@@ -1,5 +1,5 @@
 {
-  "name": "output-encryption-decryption",
+  "name": "output-transform",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.vue",

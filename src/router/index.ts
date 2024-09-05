@@ -1,12 +1,27 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
-
-import OutputEncryptionDecryption from '@/instance/output-encryption-decryption/index.vue';
+import { createWebHistory, createRouter } from 'vue-router'
 
 const routes = [
-  { path: '/', component: OutputEncryptionDecryption },
+  {
+    path: '/',
+    redirect: '/output-encryption-decryption'
+  },
+  {
+    path: '/output-encryption-decryption',
+    component: () => import('../instance/output-encryption-decryption')
+  },
+  {
+    path: '/output-transform',
+    component: () => import('../instance/output-transform')
+  }
 ]
 
 export const router = createRouter({
-  history: createMemoryHistory(),
+  history: createWebHistory(),
   routes,
 })
+
+router.beforeEach((to, from, next) => {  
+  console.log(`Navigating to: ${to.path}`);  
+  console.log(`Navigating from: ${from.path}`);  
+  next();  
+});  
