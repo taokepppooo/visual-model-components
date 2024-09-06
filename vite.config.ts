@@ -1,39 +1,34 @@
-import { defineConfig } from 'vite'
 import path from 'node:path'
+import { defineConfig } from 'vite'
+import UnoCSS from 'unocss/vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
-const entryName = process.env.ENTRY_NAME!
-  .replace(/-([a-z])/g, (g) => g[1].toUpperCase())
-  .replace(/^([a-z])/g, (g) => g.toUpperCase());
-
 const entryFilename = process.env.ENTRY_NAME;
-const entryPath = path.resolve(__dirname, process.env.ENTRY_PATH || 'src/default/index.ts');
-
-console.log('entryName:', entryName);
-console.log('entryPath:', entryPath);
+const entryPath = path.resolve(__dirname, process.env.ENTRY_PATH!);
 
 export default defineConfig({
   plugins: [
     vue(),
-    vueJsx()
+    UnoCSS(),
+    vueJsx(),
   ],
   build: {
-    lib: {
-      entry: entryPath,
-      name: entryName,
-      formats: ['es'],
-      fileName: (format) => `${entryFilename}.${format}.js`,
-    },
     rollupOptions: {
+      preserveEntrySignatures: 'allow-extension',
+      input: {
+        [`${entryFilename}`]: entryPath,
+      },
       output: {
         dir: 'dist',
+        format: 'es',
+        entryFileNames: `[name]/index.js`,
         globals: {
           vue: 'Vue'
         },
       },
-      external: ['vue', 'ant-design-vue', 'vue-router'],
-    }
+      external: ['vue', 'ant-design-vue', 'vue-router', 'unocss'],
+    },
   },
   resolve: {
     alias: {

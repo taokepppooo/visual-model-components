@@ -13,12 +13,15 @@
     "ant-design-vue": "~4.2.3",
     "output-encryption-decryption": "workspace:output-encryption-decryption",
     "output-transform": "workspace:output-transform",
+    "unocss": "^0.62.1",
     "vue": "^3.5.1",
     "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "^22.5.4",
     "@vitejs/plugin-vue": "^5.1.3",
+    "gulp": "^5.0.0",
+    "gulp-typescript": "6.0.0-alpha.1",
     "typescript": "^5.5.4",
     "vite": "^5.4.3",
     "vue-tsc": "^2.1.6"

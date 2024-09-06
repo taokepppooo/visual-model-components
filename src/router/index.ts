@@ -7,11 +7,11 @@ const routes = [
   },
   {
     path: '/output-encryption-decryption',
-    component: () => import('../instance/output-encryption-decryption')
+    component: () => import('@/instance/output-encryption-decryption/index.tsx')
   },
   {
     path: '/output-transform',
-    component: () => import('../instance/output-transform')
+    component: () => import('@/instance/output-transform/index.tsx')
   }
 ]
 
